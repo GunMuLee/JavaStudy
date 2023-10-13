@@ -126,7 +126,7 @@
 
             <div class="col-12">
                 <label for="email" class="form-label">이메일</label>
-                <div>
+                <div class="input-group" id="emailArea">
                     <input type="text" class="form-control" id="email" name="email" placeholder="you@example.com">
                     <div class="invalid-feedback">
                         Please enter a valid email address for shipping updates.
@@ -136,9 +136,7 @@
             </div>
 
             <div class="col-12">
-                <label for="phone" class="form-label">전화번호</label>
-                <div class="input-group">
-                    <input type="email" class="form-control" id="phone" name="phone" placeholder="010-****-****">
+                <label for="phone" class="form-label">전화번호</label>                    <input type="email" class="form-control" id="phone" name="phone" placeholder="010-****-****">
                     <div class="invalid-feedback">
                         Please enter a valid email address for shipping updates.
                     </div>

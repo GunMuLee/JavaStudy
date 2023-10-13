@@ -127,9 +127,14 @@ $(function(){
 			,dataType:"text"
 			,success:function(data){
 				
+				$("#authEmailArea").remove();
+				
 				if(data="true"){
-					$("#email").after(
-						"<input type='text' class='form-control' id=emailAuthCode>"
+					$("#emailArea").after(
+						"<div class='input-group' id='authEmailArea'>"
+						+"<input type='text' class='form-control' id=emailAuthCode placeholder='인증코드를 입력해주세요'>"
+						+"<input type='button' id='emailAuthBtn'>"
+						+"</div>"
 						);
 				} else if(data="false"){
 					Swal.fire({
