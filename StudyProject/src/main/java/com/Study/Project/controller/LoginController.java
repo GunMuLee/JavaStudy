@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.Study.Project.handler.RandomNumber;
+import com.Study.Project.handler.SendMailClient;
 import com.Study.Project.service.LoginService;
 
 @Controller
@@ -16,6 +18,7 @@ public class LoginController {
 	
 	@Autowired
 	private LoginService loginService;
+	
 	
 	@GetMapping("Login")
 	public String Login(HttpSession session, Model model) {
@@ -68,6 +71,32 @@ public class LoginController {
 		}
 		
 		return "false";
+	}
+	
+	@ResponseBody
+	@PostMapping("SendEmail")
+	public String SendEmail (String email, Model model) {
+		
+		boolean isCheck = loginService.isEmailCheck(email);
+		
+		if(isCheck) {
+			return "false";
+		}
+		
+		RandomNumber randomNumber = new RandomNumber();
+		
+		SendMailClient mailClient = new SendMailClient();
+		
+		
+		new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				mailClient.sendMail(email,"회원가입 인증번호 입니다.", randomNumber.randomNumber(4));
+			}
+		});
+		
+		return "true";
 	}
 	
 }

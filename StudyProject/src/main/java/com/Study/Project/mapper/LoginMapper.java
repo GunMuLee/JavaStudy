@@ -12,4 +12,7 @@ public interface LoginMapper {
 	//id 중복확인
 	int selectCheckId(String id);
 	
+	//email 중복확인
+	int selectCheckEmail(String email);
+	
 }

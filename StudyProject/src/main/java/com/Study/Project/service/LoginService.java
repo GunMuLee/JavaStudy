@@ -35,4 +35,17 @@ public class LoginService {
 		return false;
 	}
 
+	public boolean isEmailCheck(String email) {
+		
+		int i = loginMapper.selectCheckEmail(email);
+		
+		System.out.println(email);
+		
+		if(i <= 0) {
+			return true;
+		}
+		
+		return false;
+	}
+
 }

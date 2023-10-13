@@ -9,4 +9,10 @@
 			FROM members
 			WHERE m_id = #{id}
 	</select>
+	
+	<select id="selectCheckEmail">
+		SELECT count(m_email)
+			FROM members
+			WHERE m_email = #{email}
+	</select>
 </mapper>

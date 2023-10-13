@@ -112,7 +112,10 @@ $(function(){
 		let isEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 	
 		if(!isEmail.test(email)){
-			alert("이메일 형식이 아닙니다.");
+			Swal.fire({
+			  icon: 'question',
+			  title: '이메일 형식이 아닙니다.'
+			})
 			
 			return "";
 		}
@@ -125,9 +128,14 @@ $(function(){
 			,success:function(data){
 				
 				if(data="true"){
-					
+					$("#email").after(
+						"<input type='text' class='form-control' id=emailAuthCode>"
+						);
 				} else if(data="false"){
-					
+					Swal.fire({
+					  icon: 'error',
+					  title: '이미 가입된 이메일 입니다.'
+					})
 				} else {
 					
 				}

@@ -16,7 +16,7 @@ public class SendMailClient {
 	
 	// 메일 발송을 수행할 sendMail() 메서드 정의
 	// => 파라미터 : 이메일, 제목, 본문   리턴타입 : boolean(isSendSuccess)
-	public boolean sendMail(String email, String subject, String content) {
+	public boolean sendMail(String email, String subject, int authCode) {
 		boolean isSendSuccess = false;
 		
 		try {
@@ -85,6 +85,74 @@ public class SendMailClient {
 			// 3-5) 메일 본문 설정
 			// => 파라미터 : 본문, 본문의 컨텐츠 타입
 			//    (만약, 파일 전송을 포함하려면 Multipart 타입 파라미터 객체 필요)
+			
+			String content = "<!DOCTYPE html>\r\n"
+					+ "<html>\r\n"
+					+ "<head>\r\n"
+					+ "    <title>메일인증 안내</title>\r\n"
+					+ "    <style>\r\n"
+					+ "        body {\r\n"
+					+ "            font-family: 'Apple SD Gothic Neo', 'sans-serif' !important;\r\n"
+					+ "        }\r\n"
+					+ "        .container {\r\n"
+					+ "            width: 540px;\r\n"
+					+ "            height: 600px;\r\n"
+					+ "            \r\n"
+					+ "            margin: auto;\r\n"
+					+ "            padding: 30px 0;\r\n"
+					+ "            box-sizing: border-box;\r\n"
+					+ "            flex-direction: column; /* 요소들을 수직으로 배치 */\r\n"
+					+ "        }\r\n"
+					+ "        .title {\r\n"
+					+ "            margin: 0;\r\n"
+					+ "            padding: 0 5px;\r\n"
+					+ "            font-size: 28px;\r\n"
+					+ "            font-weight: 400;\r\n"
+					+ "        }\r\n"
+					+ "        .subtitle {\r\n"
+					+ "            border-bottom: 4px solid #ff9300; /* 메인 테마 색상 적용 */\r\n"
+					+ "            font-size: 20px;\r\n"
+					+ "            margin: 0 0 10px 3px;\r\n"
+					+ "            padding: 10px 0px;\r\n"
+					+ "			   display: inherit;"
+					+ "            \r\n"
+					+ "        }\r\n"
+					+ "        .point-text {\r\n"
+					+ "            color: #ff9300; /* 메인 테마 색상 적용 */\r\n"
+					+ "        }\r\n"
+					+ "        .content {\r\n"
+					+ "            font-size: 16px;\r\n"
+					+ "            line-height: 26px;\r\n"
+					+ "            margin: 50px 0;\r\n"
+					+ "            padding: 0 5px;\r\n"
+					+ "        }\r\n"
+					+ "        .number {\r\n"
+					+ "            font-size: 30px;\r\n"
+					+ "            text-align: center;\r\n"
+					+ "            border: 3px solid #ff9300;\r\n"
+					+ "            margin: 15px 100px;\r\n"
+					+ "        }\r\n"
+					+ "    </style>\r\n"
+					+ "</head>\r\n"
+					+ "<body>\r\n"
+					+ "    <div class=\"container\">\r\n"
+					+ "        <span class=\"subtitle\">Funddeuck</span>\r\n"
+					+ "        <h1 class=\"title\">\r\n"
+					+ "            <span class=\"point-text\">메일인증</span> 안내입니다.\r\n"
+					+ "        </h1>\r\n"
+					+ "        <p class=\"content\">\r\n"
+					+ "            아래 <b class=\"point-text\">'메일 인증 번호'</b> 를 입력하여 회원가입을 완료해 주세요.<br />\r\n"
+					+ "            감사합니다.\r\n"
+					+ "        </p>\r\n"
+					+ "        <!-- 메일 인증 번호 -->\r\n"
+					+ "        <div class=\"number\" >"
+					+ authCode
+					+"</div>\r\n"
+					+ "    </div>\r\n"
+					+ "</body>\r\n"
+					+ "</html>\r\n"
+					+ "";
+			
 			message.setContent(content, "text/html; charset=UTF-8");
 			// 3-6) 메일 전송 날짜 및 시각 설정
 			// => java.util.Date 객체 활용하여 현재 시스템 시각 정보 활용
