@@ -72,4 +72,15 @@ public class LoginService {
 		return false;
 	}
 
+	public boolean removeEmailAuthCode(String email) {
+		
+		int deleteCount = loginMapper.deleteEmailAuthCode(email);
+		
+		if(deleteCount > 0) {
+			return true;
+		}
+		
+		return false;
+	}
+
 }

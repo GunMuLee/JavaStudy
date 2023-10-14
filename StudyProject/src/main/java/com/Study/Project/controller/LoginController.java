@@ -80,7 +80,7 @@ public class LoginController {
 		//1.가입되어 있는지 확인
 		boolean isCheck = loginService.isEmailCheck(email);
 		
-		if(isCheck) {
+		if(!isCheck) {
 			return "false";
 		}
 		
@@ -91,17 +91,20 @@ public class LoginController {
 		//3. 코드 저장 db에 이메일이 있는지 확인
 		int isEmail = loginService.isEmailEmpty(email);
 		
+		
 		if(isEmail > 0) {
-			int insertCount = loginService.emailAuthCode(email,authCode);
-			if(insertCount > 0) {
+			int updateCount = loginService.emailAuthCodeUpdate(email,authCode);
+			if(updateCount <= 0) {
 				return "false";
 			}
 		} else {
-			int updateCount = loginService.emailAuthCodeUpdate(email,authCode);
-			if(updateCount > 0) {
+			int insertCount = loginService.emailAuthCode(email,authCode);
+			if(insertCount <= 0) {
 				return "false";
 			}
 		}
+		
+		System.out.println("if문 빠져나옴");
 		
 		// 4. 메일 전송
 		SendMailClient mailClient = new SendMailClient();
@@ -109,9 +112,11 @@ public class LoginController {
 			
 			@Override
 			public void run() {
+				System.out.println("실행");
 				mailClient.sendMail(email,"회원가입 인증번호 입니다.", authCode);
+				System.out.println("완료");
 			}
-		});
+		}).start();
 		
 		return "true";
 	}
@@ -124,7 +129,12 @@ public class LoginController {
 		
 		if(isEmailAuthCode) {
 			
-			return "true";
+			boolean removeEmailAuthCode = loginService.removeEmailAuthCode(email);
+			
+			if(removeEmailAuthCode) {
+				return "true";
+			}
+			
 		}
 		
 		return "false";

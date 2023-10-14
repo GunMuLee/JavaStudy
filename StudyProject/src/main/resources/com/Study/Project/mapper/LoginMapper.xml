@@ -15,7 +15,12 @@
 			FROM members
 			WHERE m_email = #{email}
 	</select>
-	
+	<select id="selectEmailAuthCode">
+		SELECT COUNT(email)
+			FROM emailauthcode
+			WHERE authCode = #{authCode} 
+				AND email=#{email}
+	</select>
 	<insert id="insertEmailAuthCode">
 		INSERT 
 			INTO emailauthcode
@@ -23,9 +28,19 @@
 				#{email}
 				, #{authCode});
 	</insert>
+	<update id="updateEmailAuthCode">
+		UPDATE emailauthcode
+			SET authCode = #{authCode}
+			WHERE email = #{email}
+	</update>
 	<select id="selectAuthEmailCheck">
 		SELECT count(email)
 			FROM emailauthcode
 			WHERE email = #{email}
 	</select>
+	<delete id="deleteEmailAuthCode">
+		DELETE 
+			FROM emailAuthcode
+			WHERE email=#{email}
+	</delete>
 </mapper>

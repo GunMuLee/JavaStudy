@@ -131,16 +131,18 @@
                     <div class="invalid-feedback">
                         Please enter a valid email address for shipping updates.
                     </div>
-                    <input type="button" class="btn btn-primary" id="isEmailBtn" value="인증">
+                    <input type="button" class="btn btn-primary" id="isEmailBtn" value="메일보내기">
                 </div>
             </div>
 
             <div class="col-12">
-                <label for="phone" class="form-label">전화번호</label>                    <input type="email" class="form-control" id="phone" name="phone" placeholder="010-****-****">
-                    <div class="invalid-feedback">
-                        Please enter a valid email address for shipping updates.
-                    </div>
-                    <input class="btn btn-primary" type="button" value="인증">
+                <label for="phone" class="form-label">전화번호</label>                    
+                <div class="input-group" id="phoneArea">
+	                <input type="email" class="form-control" id="phone" name="phone" placeholder="010-****-****">
+	                    <div class="invalid-feedback">
+	                        Please enter a valid email address for shipping updates.
+	                    </div>
+	                    <input class="btn btn-primary" type="button" value="인증">
                 </div>
             </div>
         </div>
@@ -156,7 +158,6 @@
     </div>
 </main>
 </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </body>
 </html>

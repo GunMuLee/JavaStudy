@@ -29,4 +29,7 @@ public interface LoginMapper {
 	//email 인증코드가 일치한지 확인
 	int selectEmailAuthCode(@Param("authCode") String authCode,@Param("email") String email);
 	
+	//email 인증성공시 db에서 데이터 제거
+	int deleteEmailAuthCode(String email);
+	
 }

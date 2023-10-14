@@ -133,7 +133,7 @@ $(function(){
 					$("#emailArea").after(
 						"<div class='input-group' id='authEmailArea'>"
 						+"<input type='text' class='form-control' id=emailAuthCode placeholder='인증코드를 입력해주세요'>"
-						+"<input type='button' id='emailAuthBtn'>"
+						+"<input type='button' class='btn btn-primary' id='emailAuthBtn' value='인증'>"
 						+"</div>"
 						);
 				} else if(data="false"){
@@ -152,7 +152,7 @@ $(function(){
 		});
 	});
 	
-	$("emailAuthBtn").on("click", function(){
+	$(document).on("click", "#emailAuthBtn", function(){
 		
 		let authCode = $("#emailAuthCode").val();
 		let email = $("#email").val();
@@ -169,19 +169,21 @@ $(function(){
 		$.ajax({
 			type:"post"
 			, url:"isEmailAuthCode"
-			, data: {authCode:authcode
+			, data: {authCode:authCode
 					,email:email}
 			, dataType:"text"
 			, success: function(data){
 				
 				if(data == "true"){
 					
-					$("isEmailBtn").remove();
+					$("#isEmailBtn").remove();
 					
-					$("email").attr("disabled", true);
+					$("#authEmailArea").remove();
+					
+					$("#email").attr("disabled", true);
 					
 					$("#emailArea").after(
-						"<b color='blue'>이메일 인증 완료</b>"
+						"<b style='color:blue'>이메일 인증 완료</b>"
 					);
 					
 				} else {
