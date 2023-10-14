@@ -77,26 +77,58 @@ public class LoginController {
 	@PostMapping("SendEmail")
 	public String SendEmail (String email, Model model) {
 		
+		//1.가입되어 있는지 확인
 		boolean isCheck = loginService.isEmailCheck(email);
 		
 		if(isCheck) {
 			return "false";
 		}
 		
+		//2.랜덤 번호 생성
 		RandomNumber randomNumber = new RandomNumber();
+		int authCode = randomNumber.randomNumber(4);
 		
+		//3. 코드 저장 db에 이메일이 있는지 확인
+		int isEmail = loginService.isEmailEmpty(email);
+		
+		if(isEmail > 0) {
+			int insertCount = loginService.emailAuthCode(email,authCode);
+			if(insertCount > 0) {
+				return "false";
+			}
+		} else {
+			int updateCount = loginService.emailAuthCodeUpdate(email,authCode);
+			if(updateCount > 0) {
+				return "false";
+			}
+		}
+		
+		// 4. 메일 전송
 		SendMailClient mailClient = new SendMailClient();
-		
-		
 		new Thread(new Runnable() {
 			
 			@Override
 			public void run() {
-				mailClient.sendMail(email,"회원가입 인증번호 입니다.", randomNumber.randomNumber(4));
+				mailClient.sendMail(email,"회원가입 인증번호 입니다.", authCode);
 			}
 		});
 		
 		return "true";
 	}
+	
+	@ResponseBody
+	@PostMapping("isEmailAuthCode")
+	public String isEmailAuthCode(String authCode, String email) {
+		
+		boolean isEmailAuthCode = loginService.isEmailAuthCodeCheck(authCode, email);
+		
+		if(isEmailAuthCode) {
+			
+			return "true";
+		}
+		
+		return "false";
+	}
+	
 	
 }

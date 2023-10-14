@@ -15,4 +15,17 @@
 			FROM members
 			WHERE m_email = #{email}
 	</select>
+	
+	<insert id="insertEmailAuthCode">
+		INSERT 
+			INTO emailauthcode
+			VALUES(
+				#{email}
+				, #{authCode});
+	</insert>
+	<select id="selectAuthEmailCheck">
+		SELECT count(email)
+			FROM emailauthcode
+			WHERE email = #{email}
+	</select>
 </mapper>
