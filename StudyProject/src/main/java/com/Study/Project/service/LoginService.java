@@ -83,4 +83,71 @@ public class LoginService {
 		return false;
 	}
 
+	public boolean inputPhoneAuthCode(int authCode, String phone) {
+		
+		int insertCount = loginMapper.insertPhoneAuthCode(authCode, phone);
+		
+		if(insertCount > 0) {
+			return true;
+		}
+		
+		return false;
+	}
+
+	public boolean selectPhoneNumber(String phone) {
+		
+		int selectCount = loginMapper.selectPhoneNumber(phone);
+		
+		if(selectCount > 0) {
+			return true;
+		}
+		
+		return false;
+	}
+
+	public boolean updatePhoneAuthCode(int authCode, String phone) {
+		
+
+		int updateCount = loginMapper.updatePhoneAuthCode(authCode, phone);
+		
+		if(updateCount > 0) {
+			return true;
+		}
+		
+		return false;
+	}
+
+	public boolean selectSMSAuthCode(int authCode, String phone) {
+		
+		int selectCount = loginMapper.selectAuthSMSCheck(authCode, phone);
+		
+		if(selectCount > 0) {
+			return true;
+		}
+		
+		return false;
+	}
+
+	public boolean removeSMSAuthCode(String phone) {
+		
+		int deleteCount = loginMapper.deleteSMSAuthCode(phone);
+		
+		if(deleteCount > 0) {
+			return true;
+		}
+		
+		return false;
+	}
+
+	public boolean isNicknameCheck(String nickname) {
+		
+		int selectCount = loginMapper.selectNickname(nickname);
+		
+		if(selectCount > 0) {
+			return false;
+		}
+		
+		return true;
+	}
+
 }

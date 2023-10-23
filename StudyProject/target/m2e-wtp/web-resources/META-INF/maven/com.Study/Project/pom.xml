@@ -146,6 +146,14 @@
 		    <artifactId>commons-lang3</artifactId>
 		    <version>3.12.0</version>
 		</dependency>
+		
+		<!-- coolSMS 사용을 위한 사전 기본 라이브러리ㅌ -->
+		<dependency>
+		  <groupId>net.nurigo</groupId>
+		  <artifactId>sdk</artifactId>
+		  <version>4.2.7</version>
+		</dependency>
+		
 				
 		<!-- AspectJ -->
 		<dependency>

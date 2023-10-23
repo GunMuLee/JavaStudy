@@ -32,4 +32,22 @@ public interface LoginMapper {
 	//email 인증성공시 db에서 데이터 제거
 	int deleteEmailAuthCode(String email);
 	
+	//sms 인증번호 저장
+	int insertPhoneAuthCode(@Param("authCode") int authCode,@Param("phone") String phone);
+	
+	//sms 인증번호를 저장하는 db에 phone이 존재하는지 판별
+	int selectPhoneNumber(String phone);
+	
+	//sms 인증번호 업데이트
+	int updatePhoneAuthCode(@Param("authCode") int authCode,@Param("phone") String phone);
+	
+	//입력한 인증번호가 맞는지 확인
+	int selectAuthSMSCheck(@Param("authCode") int authCode,@Param("phone") String phone);
+	
+	//인증번호가 맞을시 해당 번호 삭제
+	int deleteSMSAuthCode(String phone);
+	
+	//닉네임 중복 확인
+	int selectNickname(String nickname);
+	
 }

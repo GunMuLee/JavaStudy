@@ -75,23 +75,26 @@
         </div>
         <div class="row g-5">
         <div class="col">
-            <form class="needs-validation" action="joinPro" method="post" novalidate>
+            <form class="needs-validation" id="joinPro" action="joinPro" method="post" novalidate>
             <div class="row g-3">
-                <div class="col">
-                <label for="name" class="form-label">이름</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="이름" value="" required>
-                <div class="invalid-feedback">
-                    Valid last name is required.
-                </div>
-            </div>
+	            <div class="col">
+	                <label for="name" class="form-label">이름</label>
+	                <input type="text" class="form-control" id="name" name="name" placeholder="이름" value="" required>
+	                <div class="invalid-feedback">
+	                    Valid last name is required.
+	                </div>
+	            </div>
             
-            <div class="col">
-                <label for="nickname" class="form-label">닉네임</label>
-                <input type="text" class="form-control" id="nickname" name="nickname" placeholder="닉네임" value="" required>
-                <div class="invalid-feedback">
-                    Valid last name is required.
-                </div>
-            </div>
+	            <div class="col-7">
+	                <label for="nickname" class="form-label">닉네임</label>
+	                <div class="input-group">
+		                <input type="text" class="form-control" id="nickname" name="nickname" placeholder="닉네임" value="" required>
+		                <div class="invalid-feedback">
+		                    Valid last name is required.
+		                </div>
+		                <input type="button" id="nicknameCheck" value="중복확인" class="btn btn-primary">
+		            </div>
+	            </div>
 
             <div class="col-12">
                 <label for="id" class="form-label">아이디</label>
@@ -138,11 +141,11 @@
             <div class="col-12">
                 <label for="phone" class="form-label">전화번호</label>                    
                 <div class="input-group" id="phoneArea">
-	                <input type="email" class="form-control" id="phone" name="phone" placeholder="010-****-****">
+	                <input type="text" class="form-control" id="phone" name="phone" placeholder="010-****-****">
 	                    <div class="invalid-feedback">
 	                        Please enter a valid email address for shipping updates.
 	                    </div>
-	                    <input class="btn btn-primary" type="button" value="인증">
+	                <input class="btn btn-primary" type="button" value="전화번호 인증" id="phoneBtn">
                 </div>
             </div>
         </div>
@@ -152,7 +155,7 @@
             <label class="form-check-label" for="same-address">약관동의</label>
         </div>
         <hr class="my-4">
-        <button class="w-100 btn btn-primary btn-lg" type="submit">회원가입</button>
+        <button class="w-100 btn btn-primary btn-lg" type="submit" id="joinBtn">회원가입</button>
         </form>
     </div>
     </div>

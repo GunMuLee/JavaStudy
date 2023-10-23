@@ -43,4 +43,37 @@
 			FROM emailAuthcode
 			WHERE email=#{email}
 	</delete>
+	<insert id="insertPhoneAuthCode">
+		INSERT
+			INTO SMSAuthcode
+			VALUES(
+				#{phone}
+				, #{authCode}
+			);
+	</insert>
+	<select id="selectPhoneNumber">
+		SELECT COUNT(phone)
+			FROM SMSAuthcode
+			WHERE phone=#{phone}
+	</select>
+	<update id="updatePhoneAuthCode">
+		UPDATE SMSAuthcode
+			SET authCode = #{authCode}
+			WHERE phone = #{phone}
+	</update>
+	<select id="selectAuthSMSCheck">
+		SELECT COUNT(phone)
+			FROM SMSAuthcode
+			WHERE authCode=#{authCode} 
+				AND	phone=#{phone}
+	</select>
+	<delete id="deleteSMSAuthCode">
+		DELETE FROM SMSAuthcode
+			WHERE phone = #{phone}
+	</delete>
+	<select id="selectNickname">
+		SELECT COUNT(m_nickname)
+			FROM members
+			WHERE m_nickname = #{nickname}
+	</select>
 </mapper>
