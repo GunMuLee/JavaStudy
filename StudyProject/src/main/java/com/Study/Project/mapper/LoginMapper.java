@@ -55,4 +55,7 @@ public interface LoginMapper {
 	//회원가입
 	int insertJoinMember(@Param("member") Map<String, String> member,@Param("passwd") String passwd);
 	
+	//로그인
+	Map<String, String> selectMemberLogin(String id);
+	
 }

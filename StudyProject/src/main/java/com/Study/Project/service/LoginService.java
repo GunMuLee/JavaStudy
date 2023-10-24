@@ -158,4 +158,10 @@ public class LoginService {
 		
 	}
 
+	public Map<String, String> selectMemberLogin(String id) {
+		
+		return loginMapper.selectMemberLogin(id);
+		
+	}
+
 }

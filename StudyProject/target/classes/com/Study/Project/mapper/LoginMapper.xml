@@ -89,4 +89,9 @@
 			, #{member.phone}
 			);
 	</insert>
+	<select id="selectMemberLogin">
+		SELECT *
+			FROM members
+			WHERE m_id = #{id}
+	</select>
 </mapper>

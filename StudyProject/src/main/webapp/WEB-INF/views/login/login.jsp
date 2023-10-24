@@ -10,8 +10,9 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
   <title>Document</title>
+  	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<link href="${pageContext.request.contextPath }/resources/css/login.css">
-	<link href="${pageContext.request.contextPath }/resources/js/login.js">
+	<script src="${pageContext.request.contextPath }/resources/js/login.js"></script>
 </head>
 <body>
 

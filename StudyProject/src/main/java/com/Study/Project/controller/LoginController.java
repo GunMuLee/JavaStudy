@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -165,13 +166,13 @@ public class LoginController {
 			
 			if(isUpdatePhoneNumber) {
 				
-				MultipleDetailMessageSentResponse response = sms.sendAuthCode(number, phone);
+//				MultipleDetailMessageSentResponse response = sms.sendAuthCode(number, phone);
 					
-				if(response != null) { 
+//				if(response != null) { 
 					
 					return "true";
 					
-				}
+//				}
 			}
 			
 		} else {
@@ -180,13 +181,13 @@ public class LoginController {
 			
 			if(isSavePhoneNumber) {
 				
-				MultipleDetailMessageSentResponse response = sms.sendAuthCode(number, phone);
+//				MultipleDetailMessageSentResponse response = sms.sendAuthCode(number, phone);
 					
-				if(response != null) { 
+//				if(response != null) { 
 					
 					return "true";
 					
-				}
+//				}
 			}
 		}
 		
@@ -249,5 +250,23 @@ public class LoginController {
 		
 		return "redirect:/";
 	}
+	
+	@ResponseBody
+	@PostMapping("loginCheck")
+	public String loginCheck(String id, String passwd, HttpSession session, Model model) {
+		
+		Map<String, String> member = loginService.selectMemberLogin(id);
+		
+		MyPasswordEncoder encoder = new MyPasswordEncoder();
+		
+		if(member != null) {
+			return "false";
+		} else if(!encoder.isSameCryptoPassword(passwd,member.get("m_passwd"))) {
+			return "false";
+		}
+		
+		return "true";
+	}
+	
 	
 }

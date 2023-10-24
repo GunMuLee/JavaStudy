@@ -259,14 +259,14 @@ $(function(){
 				
 				$("#authEmailArea").remove();
 				
-				if(data="true"){
+				if(data=="true"){
 					$("#emailArea").after(
 						"<div class='input-group' id='authEmailArea'>"
 						+"<input type='text' class='form-control' id=emailAuthCode placeholder='인증코드를 입력해주세요'>"
 						+"<input type='button' class='btn btn-primary' id='emailAuthBtn' value='인증'>"
 						+"</div>"
 						);
-				} else if(data="false"){
+				} else if(data=="false"){
 					Swal.fire({
 					  icon: 'error',
 					  title: '이미 가입된 이메일 입니다.'
