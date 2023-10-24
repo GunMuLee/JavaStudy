@@ -1,5 +1,7 @@
 package com.Study.Project.service;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -148,6 +150,12 @@ public class LoginService {
 		}
 		
 		return true;
+	}
+
+	public int addMemberJoin(Map<String, String> member, String passwd) {
+		
+		return loginMapper.insertJoinMember(member, passwd);
+		
 	}
 
 }

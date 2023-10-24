@@ -76,4 +76,17 @@
 			FROM members
 			WHERE m_nickname = #{nickname}
 	</select>
+	<insert id="insertJoinMember">
+		INSERT 
+			INTO members
+			VALUES(
+			null
+			, #{member.id}
+			, #{passwd}
+			, #{member.name}
+			, #{member.nickname}
+			, #{member.email}
+			, #{member.phone}
+			);
+	</insert>
 </mapper>

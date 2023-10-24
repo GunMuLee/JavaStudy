@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
   <title>Document</title>
 	<link href="${pageContext.request.contextPath }/resources/css/login.css">
+	<link href="${pageContext.request.contextPath }/resources/js/login.js">
 </head>
 <body>
 

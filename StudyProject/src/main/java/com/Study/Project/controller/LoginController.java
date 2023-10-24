@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.Study.Project.handler.MyPasswordEncoder;
 import com.Study.Project.handler.RandomNumber;
 import com.Study.Project.handler.SendMailClient;
 import com.Study.Project.handler.coolSMSAPI;
@@ -164,13 +165,13 @@ public class LoginController {
 			
 			if(isUpdatePhoneNumber) {
 				
-	//			MultipleDetailMessageSentResponse response = sms.sendAuthCode(number, phone);
+				MultipleDetailMessageSentResponse response = sms.sendAuthCode(number, phone);
 					
-	//			if(response != null) { 
+				if(response != null) { 
 					
 					return "true";
 					
-	//			}
+				}
 			}
 			
 		} else {
@@ -179,13 +180,13 @@ public class LoginController {
 			
 			if(isSavePhoneNumber) {
 				
-	//			MultipleDetailMessageSentResponse response = sms.sendAuthCode(number, phone);
+				MultipleDetailMessageSentResponse response = sms.sendAuthCode(number, phone);
 					
-	//			if(response != null) { 
+				if(response != null) { 
 					
 					return "true";
 					
-	//			}
+				}
 			}
 		}
 		
@@ -224,10 +225,29 @@ public class LoginController {
 	}
 	
 	@PostMapping("joinPro")
-	public String joinPro(@RequestParam Map<String, String> join, HttpSession session, Model model) {
+	public String joinPro(@RequestParam Map<String, String> member, HttpSession session, Model model) {
 		
+		if(session.getAttribute("id") != null) {
+			model.addAttribute("home", "잘못된 접근입니다.");
+			
+			return "false";
+		}
 		
-		return "/";
+		MyPasswordEncoder encoder = new MyPasswordEncoder();
+		
+		String passwd = encoder.getCryptoPassword(member.get("passwd"));
+		
+		int insertCount = loginService.addMemberJoin(member, passwd);
+		
+		if(insertCount <= 0) {
+			
+			model.addAttribute("false", "회원가입실패");
+			
+			return "false";
+			
+		}
+		
+		return "redirect:/";
 	}
 	
 }

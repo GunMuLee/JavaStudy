@@ -1,5 +1,7 @@
 package com.Study.Project.mapper;
 
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -49,5 +51,8 @@ public interface LoginMapper {
 	
 	//닉네임 중복 확인
 	int selectNickname(String nickname);
+	
+	//회원가입
+	int insertJoinMember(@Param("member") Map<String, String> member,@Param("passwd") String passwd);
 	
 }
