@@ -1,6 +1,7 @@
 $(function(){
 	
-	$("form").submit(function(){
+	$("#loginForm").submit(function(event){
+		event.preventDefault();
 		
 		let id = $("#id").val();
 		let passwd = $("#passwd").val();
@@ -15,7 +16,7 @@ $(function(){
 			, dataTyape:"text"
 			, success: function(data){
 				if(data == "true"){
-					
+					$("form").off("submit").submit();
 				} else {
 					Swal.fire({
 					  icon: 'error',
@@ -32,7 +33,7 @@ $(function(){
 				})
 			}
 		})
-		
+		return false;
 	});	
 	
 });

@@ -58,4 +58,7 @@ public interface LoginMapper {
 	//로그인
 	Map<String, String> selectMemberLogin(String id);
 	
+	//닉네임 가져오기
+	String selectMemberNickName(String id);
+	
 }

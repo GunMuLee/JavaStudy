@@ -164,4 +164,9 @@ public class LoginService {
 		
 	}
 
+	public String getNickName(String id) {
+		
+		return loginMapper.selectMemberNickName(id);
+	}
+
 }

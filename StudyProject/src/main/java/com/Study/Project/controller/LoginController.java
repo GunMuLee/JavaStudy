@@ -31,7 +31,7 @@ public class LoginController {
 	@GetMapping("Login")
 	public String Login(HttpSession session, Model model) {
 		
-		if(session.getAttribute("id") != null) {
+		if(session.getAttribute("nickName") != null) {
 			model.addAttribute("false", "잘못된 접근입니다.");
 			return "false";
 		}
@@ -43,22 +43,22 @@ public class LoginController {
 	@PostMapping("LoginPro")
 	public String LoginPro(HttpSession session, Model model, String id, String passwd) {
 		
-		if(session.getAttribute("id") != null) {
+		if(session.getAttribute("nickName") != null) {
 			model.addAttribute("home", "잘못된 접근입니다.");
 			return "false";
 		}
 		
-		boolean isLogin = loginService.isLogin(id,passwd);
+		System.out.println(id);
 		
-		
-		
+		session.setAttribute("nickName", loginService.getNickName(id));
+
 		return "main";
 	}
 	
 	@GetMapping("Join")
 	public String Join(HttpSession session, Model model) {
 		
-		if(session.getAttribute("id") != null) {
+		if(session.getAttribute("nickName") != null) {
 			model.addAttribute("home", "잘못된 접근입니다.");
 			return "false";
 		}
@@ -228,7 +228,7 @@ public class LoginController {
 	@PostMapping("joinPro")
 	public String joinPro(@RequestParam Map<String, String> member, HttpSession session, Model model) {
 		
-		if(session.getAttribute("id") != null) {
+		if(session.getAttribute("nickName") != null) {
 			model.addAttribute("home", "잘못된 접근입니다.");
 			
 			return "false";
@@ -255,18 +255,25 @@ public class LoginController {
 	@PostMapping("loginCheck")
 	public String loginCheck(String id, String passwd, HttpSession session, Model model) {
 		
+		
 		Map<String, String> member = loginService.selectMemberLogin(id);
 		
 		MyPasswordEncoder encoder = new MyPasswordEncoder();
 		
-		if(member != null) {
+		if(member == null) {
 			return "false";
-		} else if(!encoder.isSameCryptoPassword(passwd,member.get("m_passwd"))) {
+		} else if(!encoder.isSameCryptoPassword(passwd, member.get("m_passwd"))) {
 			return "false";
 		}
 		
 		return "true";
 	}
 	
+	@GetMapping("Logout")
+	public String logout (HttpSession session, Model model) {
+		session.invalidate();
+		return "main";
+	}
 	
 }
+

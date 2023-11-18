@@ -94,4 +94,9 @@
 			FROM members
 			WHERE m_id = #{id}
 	</select>
+	<select id="selectMemberNickName">
+		SELECT m_nickname
+			FROM members
+			WHERE m_id = #{id}
+	</select>
 </mapper>
