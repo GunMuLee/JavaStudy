@@ -10,7 +10,7 @@ public class Solution3 {
 	}
 	
 	public static int solution(int a, int b) {
-		return Integer.parseInt(a + b) >= 2*a*b ? Integer.parseInt("a" + "b") : 2*a*b;
+		return Integer.parseInt(""+a + b) >= 2*a*b ? Integer.parseInt("a" + "b") : 2*a*b;
     }
 
 }
